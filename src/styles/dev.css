@@ -2,21 +2,28 @@
   width: 80%;
 
   padding: 25px 0;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-in-line-dark);
 
-  -webkit-box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
+  -moz-box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
+  box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  padding: 20px 12px;
+}
+
+.dev-item a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  margin: 15px 0;
 }
 
 .dev-item:not(:first-child) {
-	margin-top: 25px;
+  margin-top: 25px;
 }
 
 .dev-item .image-block {
@@ -25,39 +32,50 @@
 }
 
 .dev-item .image-block img {
-  -webkit-box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 16px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
+  -moz-box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
+  box-shadow: 0px 0px 16px -5px var(--color-shadow-dark);
 
   width: 100%;
 
-  border: 2px solid #000;
+  border: 2px solid var(--color-in-line-dark);
   border-radius: 50%;
 }
 
 .dev-item .infos {
-	min-width: 1000px;
+  min-width: 1000px;
+  padding-left: 15px;
 }
 
-.dev-item .infos .dev-title {
+.dev-item a .infos .dev-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.dev-item .infos .dev-title a:not(:first-child) {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 5px;
+.dev-item .infos .dev-title span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
 
-	color: rgb(163, 135, 7);
-  background: rgb(221, 221, 221);
+  color: var(--color-blue-dark);
+  background: var(--color-menu-dark);
 
-  border: 1px solid rgb(121, 121, 121);
+  border: 1px solid var(--color-in-line-dark);
   border-radius: 15px;
 
   padding: 8px 10px;
 
   font-weight: bold;
+  font-size: 1rem;
+}
+
+.dev-item .infos .dev-title h1 {
+  font: 700 1.4rem 'Roboto', 'sans-serif';
+}
+
+.dev-item .infos .dev-bio {
+  margin-top: 12px;
+  font: 300 1rem 'Roboto', 'sans-serif';
 }

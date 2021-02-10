@@ -1,0 +1,29 @@
+:root {
+    --color-menu-dark: #161b22;
+    --color-bg-dark: #0d1117;
+    --color-font-dark: #fff;
+    --color-line-in-color-dark: #353535;
+    --color-shadow-dark: rgba(255, 255, 255, 0.1);
+    --color-blue-dark: #345e85;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--color-font-dark);
+}
+
+#root {
+    background: var(--color-bg-dark);
+}
+
+*, button, textarea, a, ul, li {
+    text-decoration: none;
+    list-style: none;
+    font: 400 1.4rem 'Roboto', 'sans-serif';
+}
+
+input, textarea {
+    color: var(--color-in-line-dark);
+}

@@ -11,6 +11,7 @@ interface iDevInfo {
   avatar_url: string;
   public_repos: number;
   bio: string;
+  login: string;
 }
 
 export default function Landing() {
@@ -23,11 +24,11 @@ export default function Landing() {
     api
       .get(`/users/${name}`)
       .then(({ data }) => {
-        const { id, name, avatar_url, public_repos, bio } = data;
+        const { id, name, avatar_url, public_repos, bio, login } = data;
 
         const newDevInfo = [
           ...devsInfo,
-          { id, name, avatar_url, public_repos, bio },
+          { id, name, avatar_url, public_repos, bio, login },
         ];
         setDevsInfo(newDevInfo);
       })
@@ -69,7 +70,7 @@ export default function Landing() {
       </header>
 
       <main>
-        {devsInfo.length !== 0 && devsInfo[0] !== null ? (
+        {devsInfo.length && devsInfo[0] !== null ? (
           devsInfo.map((dev) => {
             return (
               <Dev
@@ -79,6 +80,7 @@ export default function Landing() {
                 bio={dev.bio}
                 avatar_url={dev.avatar_url}
 								public_repos={dev.public_repos}
+                username={dev.login}
               />
             );
           })

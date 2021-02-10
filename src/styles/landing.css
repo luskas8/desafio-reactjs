@@ -1,11 +1,19 @@
 #page-landing {
 	width: 100%;
 	min-height: 100vh;
-}
-#page-landing main {
-	margin-top: 35px;
 
-	border-top: 1.3px solid #ccc;
+	background: var(--color-bg-dark);
+}
+
+#page-landing header {
+	background: var(--color-menu-dark);
+	padding: 35px 15px;
+}
+
+#page-landing main {
+	padding-top: 35px;
+
+	border-top: 1.3px solid var(--color-in-line-dark);
 	width: 100%;
 
 	display: flex;
