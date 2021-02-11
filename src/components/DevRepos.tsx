@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import api from "../utils/api";
 
 import "../styles/devRepos.css";
+import Repository from "./Repository";
 
 interface iDevProps {
   username: string;
@@ -13,62 +14,42 @@ interface iReposName {
 }
 
 interface iReposInfo {
+  name: string;
   description: string;
-  topics: Array<string>;
+  html_url: string;
 }
 
 export default function DevRepos({ username: devUsername }: iDevProps) {
-  const [reposName, setReposName] = useState<Array<iReposName>>([]);
   const [repos, setRepos] = useState<Array<iReposInfo>>([]);
 
   useEffect(() => {
     api
       .get(`/users/${devUsername}/repos`)
       .then(({ data }) => {
-        setReposName(
-          data.map((item: any) => {
-            return item.name;
-          })
-        );
+        console.log(data);
+        setRepos(data.map((item: any) => {
+          const { name, description, html_url } = item;
+          return { name, description, html_url };
+        })
+      )
       })
       .catch((err) => {
-        console.log("Nenhum repositória encontrado.");
+        alert("Erro!");
+        console.error(err);
       });
-
-    reposName.map((name) => {
-      api
-        .get(`/repos/${devUsername}/${name}`)
-        .then(({ data }) => {
-          console.log(data);
-          setReposName(
-            data.map((item: iReposInfo) => {
-              return item;
-            })
-          );
-        })
-        .catch((err) => {
-          console.log("Nenhum repositória encontrado.");
-        });
-    });
-  }, [devUsername]);
-
-  if (!reposName) return <h1>Carregando...</h1>;
+    console.log(repos)
+  }, []);
+  
   return (
     <div id="page-repos">
       {repos.map((item, idx) => {
         return (
-          <div className="item" key={idx}>
-            <h1>{item}</h1>
-            <div className="topics">
-              {
-                item.topics.map((topic, topic_idx) => {
-                  return (
-                    <h2 key={topic_idx}>{topic}</h2>
-                  )
-                })
-              }
-            </div>
-          </div>
+          <Repository
+            key={idx}
+            name={item.name}
+            description={item.description}
+            html_url={item.html_url}
+          />
         );
       })}
     </div>

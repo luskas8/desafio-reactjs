@@ -1,6 +1,8 @@
 import React, { FormEvent, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+
 import Dev from "../components/Dev";
+
 import api from "../utils/api";
 
 import '../styles/landing.css';
@@ -64,7 +66,7 @@ export default function Landing() {
           />
 
           <button type="submit">
-            <FaSearch size={16} color="#000" />
+            <FaSearch size={16} />
           </button>
         </form>
       </header>

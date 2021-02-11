@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { HiOutlineLocationMarker } from "react-icons/hi";
 
 import DevRepos from "../components/DevRepos";
+import Loading from '../components/Loading';
 
 import api from "../utils/api";
 
-import '../styles/devPage.css'
+import "../styles/devPage.css";
 
 interface iDevParams {
   username: string;
@@ -35,11 +36,9 @@ export default function DevPage() {
       .catch((err) => {
         console.error("Dev não encontrado.");
       });
-
-			// setDevInfo({ name: "Lucas Anjos", avatar_url: "https://avatars.githubusercontent.com/u/42415782?v=4", bio: "Estudante de Ciências da Computação, apaixonado por tecnologias e por JavaScript. Em busca de conhecimento!", username: "luskas8", location: "São Paulo" });
   }, [params.username]);
 
-  if (!devInfo) return <h1>Carregando...</h1>;
+  if (!devInfo) return <Loading />;
 
   return (
     <div id="page-dev">
@@ -57,11 +56,14 @@ export default function DevPage() {
           </div>
         </main>
         <footer>
-          <h3><HiOutlineLocationMarker size={18} color="#fff"/> {devInfo.location}</h3>
+          <h3>
+            <HiOutlineLocationMarker size={18} color="#fff" />{" "}
+            {devInfo.location}
+          </h3>
         </footer>
       </aside>
 
-			<DevRepos username={devInfo.username}/>
+      <DevRepos username={devInfo.username} />
     </div>
   );
 }
