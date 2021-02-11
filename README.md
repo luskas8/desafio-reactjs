@@ -7,6 +7,10 @@
 
 Para buscar e listar desenvolvedores e seus projetos, foi usado a `API` do [GitHub](https://docs.github.com/en/developers), com React, Typescript e Redux que foi uma biblioteca na qual com bastante dedicação consegui entender e pude usar um pouco do seu poder nessa aplicação.
 
+### 💻 Acesso
+
+Caso queira testar, tem um deploy no [Nelify](https://desafio-reactjs.netlify.app/).
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
