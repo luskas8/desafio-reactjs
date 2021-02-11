@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import { LandingContainer, DevInput, Form, Header, Main } from "../styles/landing";
-import { DevState } from "../store/dev/types";
+import { Store } from "../store/dev/types";
 import { addDev } from "../store/dev/actions";
 
 import Dev from "../components/Dev";
@@ -11,7 +11,7 @@ import api from "../utils/api";
 
 export default function Landing() {
   const dispatch = useDispatch();
-  let { devs } = useSelector((state: DevState) => state);
+  let { devs } = useSelector((state: Store) => state.devReducer);
   const [devName, setDevName] = useState("");
 
   const getDevFromApi = (name: string) => {

@@ -1,4 +1,11 @@
-import { createStore } from "redux";
-import { devReducer } from "./dev/reducers";
+import { createStore, combineReducers } from "redux";
+import { devReducer, themeReducer } from "./dev/reducers";
 
-export const store = createStore(devReducer);
+const rootReducer = combineReducers({
+  devReducer,
+  themeReducer,
+})
+
+export const store = createStore(rootReducer);
+
+store.subscribe(() => console.log(store.getState()));
