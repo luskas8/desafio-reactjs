@@ -1,9 +1,11 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { RiGitRepositoryLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import "../styles/dev.css";
+import { deleteDev } from "../store/dev/actions";
+
+import { StyledLink, DevItem, ImageBlock, Title, TitleSpan, Infos, ButtonBlock, DeleteButton } from '../styles/dev';
 
 interface iDevProps {
   id: number;
@@ -15,28 +17,34 @@ interface iDevProps {
 }
 
 export default function Dev(props: iDevProps) {
+  const dispatch = useDispatch();
+
+  const deleteDevFromArray = (index: number) => {
+    dispatch(deleteDev(index));
+  }
+
   return (
-    <div className="dev-item">
-      <Link to={`/page-dev/${props.username}`} target="_blank" href="#">
-        <div className="image-block">
+    <DevItem>
+      <StyledLink to={`/page-dev/${props.username}`} target="_blank">
+        <ImageBlock>
           <img src={props.avatar_url} alt={`Avatar de ${props.name}`} />
-        </div>
-        <div className="infos">
-          <div className="dev-title">
+        </ImageBlock>
+        <Infos>
+          <Title>
             <h1>{props.name}</h1>
-            <span>
+            <TitleSpan>
               {props.public_repos}
               <RiGitRepositoryLine size={16} />
-            </span>
-          </div>
-          <p className="dev-bio">{props.bio}</p>
-        </div>
-      </Link>
-        <div className="button-block">
-          <button onClick={() => {}}>
-            <FaTrash size={25} color="#000" />
-          </button>
-        </div>
-    </div>
+            </TitleSpan>
+          </Title>
+          <p>{props.bio}</p>
+        </Infos>
+      </StyledLink>
+        <ButtonBlock>
+          <DeleteButton onClick={() => {deleteDevFromArray(props.id)}}>
+            <FaTrash size={25} />
+          </DeleteButton>
+        </ButtonBlock>
+    </DevItem>
   );
 }

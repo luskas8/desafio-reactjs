@@ -1,25 +1,18 @@
 import React, { FormEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import { LandingContainer, DevInput, Form, Header, Main } from "../styles/landing";
+import { DevState } from "../store/dev/types";
+import { addDev } from "../store/dev/actions";
 
 import Dev from "../components/Dev";
 
 import api from "../utils/api";
 
-import '../styles/landing.css';
-
-interface iDevInfo {
-  id: number;
-  name: string;
-  avatar_url: string;
-  public_repos: number;
-  bio: string;
-  login: string;
-}
-
 export default function Landing() {
+  const dispatch = useDispatch();
+  let { devs } = useSelector((state: DevState) => state);
   const [devName, setDevName] = useState("");
-  const [devsNames, setDevsNames] = useState<Array<string>>([]);
-  const [devsInfo, setDevsInfo] = useState<Array<iDevInfo>>([]);
 
   const getDevFromApi = (name: string) => {
     // Pesquisa na API do GitHub o nome de usuário
@@ -28,25 +21,19 @@ export default function Landing() {
       .then(({ data }) => {
         const { id, name, avatar_url, public_repos, bio, login } = data;
 
-        const newDevInfo = [
-          ...devsInfo,
-          { id, name, avatar_url, public_repos, bio, login },
-        ];
-        setDevsInfo(newDevInfo);
+        const payload = { id, name, avatar_url, public_repos, bio, login };
+        dispatch(addDev(payload));
       })
       .catch((err) => {
         console.error("Erro dev não encontrado!");
-        alert("Error: Dev não encontrado!");
+        alert("Erro Dev não encontrado!");
       });
   };
 
   const onSubmitForm = (e: FormEvent) => {
     e.preventDefault();
 
-    // Adiciona a url ao vetor de nomes existente
-    const newDevsNames = [...devsNames, devName];
-    setDevsNames(newDevsNames);
-
+    // Adiciona ao vetor de devs existente
     getDevFromApi(devName);
 
     // Limpa input do nome
@@ -54,11 +41,11 @@ export default function Landing() {
   };
 
   return (
-    <div id="page-landing">
-      <header>
+    <LandingContainer>
+      <Header>
         <h2>Pesquise o nome do dev que deseja</h2>
-        <form onSubmit={onSubmitForm}>
-          <input
+        <Form onSubmit={onSubmitForm}>
+          <DevInput
             type="text"
             name="dev"
             value={devName}
@@ -66,14 +53,14 @@ export default function Landing() {
           />
 
           <button type="submit">
-            <FaSearch size={16} />
+            <FaSearch size={16}/>
           </button>
-        </form>
-      </header>
+        </Form>
+      </Header>
 
-      <main>
-        {devsInfo.length && devsInfo[0] !== null ? (
-          devsInfo.map((dev) => {
+      <Main>
+        { devs.length ? (
+          devs.map((dev) => {
             return (
               <Dev
                 key={dev.id}
@@ -89,7 +76,7 @@ export default function Landing() {
         ) : (
           <h1 >Nenhum dev encontrado!</h1>
         )}
-      </main>
-    </div>
+      </Main>
+    </LandingContainer>
   );
 }

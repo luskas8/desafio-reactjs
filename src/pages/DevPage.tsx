@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
 
 import api from "../utils/api";
 
-import "../styles/devPage.css";
+import { Aside, DevContainer, ImageBlock, Info, Footer } from "../styles/devPage";
 
 interface iDevParams {
   username: string;
@@ -41,29 +41,33 @@ export default function DevPage() {
   if (!devInfo) return <Loading />;
 
   return (
-    <div id="page-dev">
-      <aside>
+    <DevContainer>
+      <Aside>
         <header>
-          <div className="image-block">
+          <ImageBlock>
             <img src={devInfo.avatar_url} alt={`Avatar de ${devInfo.name}`} />
-          </div>
+          </ImageBlock>
         </header>
         <main>
-          <div className="infos">
+          <Info>
             <h1>{devInfo.name}</h1>
             <h2>{devInfo.username}</h2>
             <p>{devInfo.bio}</p>
-          </div>
+          </Info>
         </main>
-        <footer>
-          <h3>
-            <HiOutlineLocationMarker size={18} color="#fff" />{" "}
-            {devInfo.location}
-          </h3>
-        </footer>
-      </aside>
+        <Footer>
+          {
+            devInfo.location && (
+              <h3>
+                <HiOutlineLocationMarker size={18} color="#fff" />{" "}
+                {devInfo.location}
+              </h3>
+            )
+          }
+        </Footer>
+      </Aside>
 
       <DevRepos username={devInfo.username} />
-    </div>
+    </DevContainer>
   );
 }

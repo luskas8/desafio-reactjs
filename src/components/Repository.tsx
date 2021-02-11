@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { RepositoryContainer, Title } from '../styles/repository';
-
-import '../styles/repository.css';
+import { Main, RepositoryContainer, Title } from '../styles/repository';
+import { BsBoxArrowInRight } from 'react-icons/bs';
+import { RiGitRepositoryLine } from 'react-icons/ri';
 
 interface iReposProps {
     name: string;
@@ -14,18 +13,20 @@ export default function Repository({ name, description, html_url } : iReposProps
     return (
         <RepositoryContainer >
             <header>
-                <Title>{name}</Title>
+                <Title>
+                    <RiGitRepositoryLine size={25} />
+                    {name}
+                </Title>
             </header>
-            <main>
+            <Main>
                 <p>{description}</p>
-            </main>
+            </Main>
             <footer>
-                <a href={html_url} target="_blank">
+                <a href={html_url} target="_blank" rel="noreferrer">
                     Ir para repositório
+                    <BsBoxArrowInRight size={25} />
                 </a>
             </footer>
         </RepositoryContainer>
-        // <div className="container-repository">
-        // </div>
     );
 }

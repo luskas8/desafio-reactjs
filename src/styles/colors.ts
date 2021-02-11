@@ -7,5 +7,7 @@ export const colors = {
         "shadow": "#ffffff1a",
         "blue": "#345e85",
         "title-blue": "#58a6ff",
+        "delete": "#ff5858",
+        "green": "#2ee865",
     },
 }

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import api from "../utils/api";
 
-import "../styles/devRepos.css";
 import Repository from "./Repository";
+import Loading from "./Loading";
+
+import styled from "styled-components";
+
+import api from "../utils/api";
+import { colors } from "../styles/colors";
 
 interface iDevProps {
   username: string;
-}
-
-interface iReposName {
-  name: string;
 }
 
 interface iReposInfo {
@@ -23,10 +23,12 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
   const [repos, setRepos] = useState<Array<iReposInfo>>([]);
 
   useEffect(() => {
+    // Deixa o vetor de repositórios do dev sempre vazio ao iniciar a página
+    setRepos([]);
+
     api
       .get(`/users/${devUsername}/repos`)
       .then(({ data }) => {
-        console.log(data);
         setRepos(data.map((item: any) => {
           const { name, description, html_url } = item;
           return { name, description, html_url };
@@ -34,14 +36,26 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
       )
       })
       .catch((err) => {
-        alert("Erro!");
+        alert("Erro ao procurar repositórios.");
         console.error(err);
       });
     console.log(repos)
-  }, []);
+  }, [devUsername]);
   
+  if (!repos.length) return <Loading spinnerType="TailSpin" time={10000} text="Só mais um pouco... desculpe a demora :)" color={colors.dark.green}/>
+
+  const PageRepositories = styled.div`
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 50px 0 25px 380px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  `
+
   return (
-    <div id="page-repos">
+    <PageRepositories>
       {repos.map((item, idx) => {
         return (
           <Repository
@@ -52,6 +66,6 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
           />
         );
       })}
-    </div>
+    </PageRepositories>
   );
 }

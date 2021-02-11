@@ -1,9 +1,0 @@
-#page-repos {
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 50px 0 25px 380px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-}
