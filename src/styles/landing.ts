@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-import { bg, menu, blue, lineInColor, titleBlue } from "./colors";
+import {
+  bg,
+  menu,
+  blue,
+  lineInColor,
+  titleBlue,
+} from "./colors";
 import { Input } from "./global";
 
 interface ThemeProp {
@@ -35,7 +41,7 @@ export const Form = styled.form<ThemeProp>`
     top: 0;
 
     color: ${(props) => (props.theme === "DARK" ? blue.dark : blue.light)};
-    background: ${(props) => (props.theme === "DARK" ? bg.dark : bg.light)};
+    background: ${bg.dark};
     border: 1px solid
       ${(props) =>
         props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
@@ -63,7 +69,7 @@ export const DevInput = styled(Input)<ThemeProp>`
   width: 100%;
   height: 100%;
 
-  background: ${(props) => (props.theme === "DARK" ? bg.dark : bg.light)};
+  background: ${bg.dark};
   border: 1px solid
     ${(props) =>
       props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
@@ -86,4 +92,9 @@ export const Main = styled.main<ThemeProp>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  & > .noDev {
+    color: ${(props) => (props.theme !== "DARK" && '#000')} !important;
+    z-index: 99;
+  }
 `;

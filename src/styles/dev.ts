@@ -11,9 +11,9 @@ export const DevItem = styled.div<ThemeProp>`
   width: 80%;
 
   padding: 25px 0;
-  border: 0.1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light}};
+  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : menu.dark}};
 
-  background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
+  background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
 
   -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
   -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
@@ -43,7 +43,7 @@ export const DevItem = styled.div<ThemeProp>`
 `;
   
 export const StyledLink = styled(Link)<ThemeProp>`
-  color: ${(props) => props.theme === "DARK" ? font.dark : font.light};
+  color: ${(props) => props.theme === "DARK" ? font.dark : menu.light};
 
   display: flex;
   justify-content: space-around;
@@ -64,7 +64,7 @@ export const ImageBlock = styled.div<ThemeProp>`
 
     width: 100%;
 
-    border: 2px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
+    border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : menu.light};
     border-radius: 50%;
   }
 `;
@@ -87,9 +87,9 @@ export const TitleSpan = styled.span<ThemeProp>`
   gap: 5px;
 
   color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
-  background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
+  background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
 
-  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
+  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : bg.dark};
   border-radius: 15px;
 
   padding: 8px 10px;
@@ -125,9 +125,9 @@ export const DeleteButton = styled.button<ThemeProp>`
   justify-content: center;
   align-items: center;
 
-  color: ${(props) => props.theme === "DARK" ? font.dark : font.light};
+  color: ${(props) => props.theme === "DARK" ? font.dark : menu.light};
   background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
-  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : titleBlue.light};
+  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
   border-radius: 12px;
   cursor: pointer;
 
@@ -138,6 +138,6 @@ export const DeleteButton = styled.button<ThemeProp>`
   &:active {
     border-color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
     color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
-    background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
+    background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
   }
 `;

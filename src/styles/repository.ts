@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { lineInColor, blue, green, titleBlue } from './colors';
+import { lineInColor, blue, green, titleBlue, menu } from './colors';
 
 interface ThemeProp {
     theme: string;
@@ -22,7 +22,7 @@ position: relative;
 
         & > a {
             text-decoration: none;
-            color: ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
+            color: ${(props) => props.theme === "DARK" ? blue.dark : menu.light};
 
             display: flex;
             justify-content: center;
@@ -42,17 +42,19 @@ export const Title = styled.h1<ThemeProp>`
     align-items: center;
     gap: 8px;
 
-    color: ${(props) => props.theme === "DARK" ? titleBlue.dark : lineInColor.light};
+    color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
     font: 700 1.6rem "Roboto", "sans-serif";
 `;
 
-export const Main = styled.main`
+export const Main = styled.main<ThemeProp>`
     margin-top: 25px;
     width: 100%;
 
     & > p {
         font-size: 1.3rem;
-        ont-weight: 300;
+        font-weight: 300;
+
+        color: ${(props) => props.theme === 'LIGHT' && menu.light};
         
         width: 100%;
         max-height: 100px;

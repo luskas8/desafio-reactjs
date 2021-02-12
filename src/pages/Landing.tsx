@@ -82,7 +82,7 @@ export default function Landing() {
             );
           })
         ) : (
-          <h1>Nenhum dev encontrado!</h1>
+          <h1 className="noDev">Nenhum dev encontrado!</h1>
         )}
       </Main>
 

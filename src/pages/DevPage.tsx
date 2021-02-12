@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { Store } from "../store/dev/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import DevRepos from "../components/DevRepos";
 import Loading from '../components/Loading';
@@ -11,9 +11,11 @@ import api from "../utils/api";
 
 import { Aside, DevContainer, ImageBlock, Info, Footer } from "../styles/devPage";
 import { green } from "../styles/colors";
+import { darkTheme, lightTheme } from "../store/dev/actions";
 
 interface iDevParams {
   username: string;
+  theme: string;
 }
 
 interface iDevInfo {
@@ -26,10 +28,17 @@ interface iDevInfo {
 
 export default function DevPage() {
   const { theme } = useSelector((state: Store) => state.themeReducer);
+  const dispatch = useDispatch();
   const params = useParams<iDevParams>();
   const [devInfo, setDevInfo] = useState<iDevInfo>();
 
   useEffect(() => {
+    if (params.theme === "DARK") {
+      dispatch(darkTheme());
+    } else {
+      dispatch(lightTheme());
+    }
+
     api
       .get(`/users/${params.username}`)
       .then(({ data }) => {
@@ -40,7 +49,7 @@ export default function DevPage() {
       .catch((err) => {
         console.error("Dev não encontrado.");
       });
-  }, [params.username]);
+  }, [params.username, params.theme, dispatch]);
 
   if (!devInfo) return <Loading time={0} color={theme === 'DARK' ? green.dark : green.light}/>;
 

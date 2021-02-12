@@ -27,7 +27,7 @@ export default function Dev(props: iDevProps) {
 
   return (
     <DevItem theme={theme}>
-      <StyledLink to={`/page-dev/${props.username}`} target="_blank" theme={theme}>
+      <StyledLink to={`/page-dev/${props.username}/${theme}`} target="_blank" theme={theme}>
         <ImageBlock theme={theme}>
           <img src={props.avatar_url} alt={`Avatar de ${props.name}`} />
         </ImageBlock>
