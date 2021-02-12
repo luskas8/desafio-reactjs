@@ -8,7 +8,7 @@ interface ThemeProp {
 }
 
 export const DevItem = styled.div<ThemeProp>`
-  width: 80%;
+  width: 1500px;
 
   padding: 25px 0;
   border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : menu.dark}};
@@ -18,12 +18,7 @@ export const DevItem = styled.div<ThemeProp>`
   -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
   -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
   box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-
+  
   padding: 20px 12px;
 
   border-bottom-left-radius: ${Math.random() * (25 - 12) + 5}px;
@@ -140,4 +135,13 @@ export const DeleteButton = styled.button<ThemeProp>`
     color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
     background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
   }
+`;
+
+export const DevContainer = styled.div`
+  max-width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 `;

@@ -6,7 +6,17 @@ import { Store } from "../store/dev/types";
 
 import { deleteDev } from "../store/dev/actions";
 
-import { StyledLink, DevItem, ImageBlock, Title, TitleSpan, Infos, ButtonBlock, DeleteButton } from '../styles/dev';
+import {
+  StyledLink,
+  DevItem,
+  ImageBlock,
+  Title,
+  TitleSpan,
+  Infos,
+  ButtonBlock,
+  DeleteButton,
+  DevContainer,
+} from "../styles/dev";
 
 interface iDevProps {
   id: number;
@@ -23,30 +33,41 @@ export default function Dev(props: iDevProps) {
 
   const deleteDevFromArray = (index: number) => {
     dispatch(deleteDev(index));
-  }
+  };
 
   return (
     <DevItem theme={theme}>
-      <StyledLink to={`/page-dev/${props.username}/${theme}`} target="_blank" theme={theme}>
-        <ImageBlock theme={theme}>
-          <img src={props.avatar_url} alt={`Avatar de ${props.name}`} />
-        </ImageBlock>
-        <Infos theme={theme}>
-          <Title theme={theme}>
-            <h1>{props.name}</h1>
-            <TitleSpan theme={theme}>
-              {props.public_repos}
-              <RiGitRepositoryLine size={16} />
-            </TitleSpan>
-          </Title>
-          <p>{props.bio}</p>
-        </Infos>
-      </StyledLink>
+      <DevContainer>
+        <StyledLink
+          to={`/page-dev/${props.username}/${theme}`}
+          target="_blank"
+          theme={theme}
+        >
+          <ImageBlock theme={theme}>
+            <img src={props.avatar_url} alt={`Avatar de ${props.name}`} />
+          </ImageBlock>
+          <Infos theme={theme}>
+            <Title theme={theme}>
+              <h1>{props.name}</h1>
+              <TitleSpan theme={theme}>
+                {props.public_repos}
+                <RiGitRepositoryLine size={16} />
+              </TitleSpan>
+            </Title>
+            <p>{props.bio}</p>
+          </Infos>
+        </StyledLink>
         <ButtonBlock theme={theme}>
-          <DeleteButton onClick={() => {deleteDevFromArray(props.id)}} theme={theme}>
+          <DeleteButton
+            onClick={() => {
+              deleteDevFromArray(props.id);
+            }}
+            theme={theme}
+          >
             <FaTrash size={25} />
           </DeleteButton>
         </ButtonBlock>
+      </DevContainer>
     </DevItem>
   );
 }
