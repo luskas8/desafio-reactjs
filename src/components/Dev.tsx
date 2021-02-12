@@ -39,7 +39,7 @@ export default function Dev(props: iDevProps) {
     <DevItem theme={theme}>
       <DevContainer>
         <StyledLink
-          to={`/page-dev/${props.username}/${theme}`}
+          to={`/page-dev/${theme}/${props.username}`}
           target="_blank"
           theme={theme}
         >

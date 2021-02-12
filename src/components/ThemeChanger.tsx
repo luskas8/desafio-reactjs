@@ -16,9 +16,10 @@ import {
 // interface 
 
 export default function ThemeChanger() {
+  const marginDefaultValue = 70;
   const { theme } = useSelector((state: Store) => state.themeReducer);
   const dispatch = useDispatch();
-  const [hoverMargin, setHoverMargin] = useState(70);
+  const [hoverMargin, setHoverMargin] = useState(marginDefaultValue);
 
   const ThemeChenagerContainer = styled.div`
     width: 80px;
@@ -29,6 +30,8 @@ export default function ThemeChanger() {
     right: 0;
 
     & > button {
+      cursor: pointer;
+
       border: 3px solid ${theme === "DARK" ? purpleScale1.dark : shadow.light};
       border-right: 0px;
 
@@ -60,7 +63,7 @@ export default function ThemeChanger() {
   };
 
   return (
-    <ThemeChenagerContainer onMouseOver={() => {setHoverMargin(0)}} onMouseLeave={() => setHoverMargin(70)}>
+    <ThemeChenagerContainer onMouseOver={() => {setHoverMargin(0)}} onMouseLeave={() => setHoverMargin(marginDefaultValue)}>
       <button onClick={onChangerClick}>
         <WiMoonAltThirdQuarter size={25} />
       </button>
