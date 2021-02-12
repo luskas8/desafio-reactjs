@@ -1,12 +1,17 @@
 import styled from 'styled-components';
-import { colors } from './colors';
 
-export const RepositoryContainer = styled.div`
-    position: relative;
+import { lineInColor, blue, green, titleBlue } from './colors';
+
+interface ThemeProp {
+    theme: string;
+}
+
+export const RepositoryContainer = styled.div<ThemeProp>`
+position: relative;
     width: 600px;
     height: 300px;
 
-    border: 2px solid ${colors.dark['line-in-color']};
+    border: 2px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
 
     margin-top: 30px;
     padding: 15px 20px;
@@ -17,7 +22,7 @@ export const RepositoryContainer = styled.div`
 
         & > a {
             text-decoration: none;
-            color: ${colors.dark.blue};
+            color: ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
 
             display: flex;
             justify-content: center;
@@ -25,19 +30,19 @@ export const RepositoryContainer = styled.div`
             gap: 8px;
 
             &:hover {
-                color: ${colors.dark.green};
+                color: ${(props) => props.theme === "DARK" ? green.dark : green.light};
             }
         }
 
     }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1<ThemeProp>`
     display: flex;
     align-items: center;
     gap: 8px;
 
-    color: ${colors.dark['title-blue']};
+    color: ${(props) => props.theme === "DARK" ? titleBlue.dark : lineInColor.light};
     font: 700 1.6rem "Roboto", "sans-serif";
 `;
 

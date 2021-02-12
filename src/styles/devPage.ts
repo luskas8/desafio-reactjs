@@ -1,16 +1,21 @@
 import styled from 'styled-components';
-import { colors } from './colors';
+
+import { menu } from './colors';
+
+interface ThemeProp {
+    theme: string;
+}
 
 export const DevContainer = styled.div`
     width: 100%;
     min-height: 100vh;
 `;
 
-export const Aside = styled.aside`
+export const Aside = styled.aside<ThemeProp>`
     width: 320px;
     height: 100vh;
 
-    background: ${colors.dark.menu};
+    background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
     position: fixed;
 
     display: flex;

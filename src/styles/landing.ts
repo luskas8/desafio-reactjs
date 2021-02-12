@@ -1,16 +1,22 @@
 import styled from 'styled-components';
-import { colors } from './colors';
+
+import { bg, menu, blue, lineInColor, titleBlue } from './colors';
 import { Input } from './global';
 
-export const LandingContainer = styled.div`
+interface ThemeProp {
+    theme: string;
+}
+
+export const LandingContainer = styled.div<ThemeProp>`
+    position: relative;
     width: 100%;
     min-height: 100vh;
 
-    background: ${colors.dark.bg};
+    background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
 `;
 
-export const Header = styled.header`
-    background: ${colors.dark.menu};
+export const Header = styled.header<ThemeProp>`
+    background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
     padding: 35px 15px;
 
     display: flex;
@@ -18,7 +24,7 @@ export const Header = styled.header`
     align-items: center;
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<ThemeProp>`
     width: 260px;
     height: 55px;
     position: relative;
@@ -28,9 +34,9 @@ export const Form = styled.form`
         right: -50px;
         top: 0;
 
-        color: ${colors.dark.blue};
-        background: ${colors.dark.bg};
-        border: 1px solid ${colors.dark['line-in-color']};
+        color: ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
+        background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
+        border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
         border-bottom-right-radius: 12px;
 	    border-top-right-radius: 12px;
         display: flex;
@@ -41,19 +47,19 @@ export const Form = styled.form`
         align-items: center;
 
         &:active {
-            color: ${colors.dark['title-blue']};
-            border: 1px solid ${colors.dark.blue};
-            background: ${colors.dark.menu};
+            color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
+            border: 1px solid ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
+            background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
         }
     }
 `;
 
-export const DevInput = styled(Input)`
+export const DevInput = styled(Input)<ThemeProp>`
     width: 100%;
     height: 100%;
 
-    background: var(--color-bg-dark);
-    border: 1px solid ${colors.dark['line-in-color']};
+    background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
+    border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
     border-bottom-left-radius: 12px;
 	border-top-left-radius: 12px;
 
@@ -62,10 +68,10 @@ export const DevInput = styled(Input)`
     font-size: 1rem;
 `;
 
-export const Main = styled.main`
+export const Main = styled.main<ThemeProp>`
     padding-top: 35px;
 
-    border-top: 1.3px solid ${colors.dark['title-blue']};
+    border-top: 1.3px solid ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
     width: 100%;
 
     display: flex;

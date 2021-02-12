@@ -1,17 +1,25 @@
 import React, { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
-import { LandingContainer, DevInput, Form, Header, Main } from "../styles/landing";
+import {
+  LandingContainer,
+  DevInput,
+  Form,
+  Header,
+  Main,
+} from "../styles/landing";
 import { Store } from "../store/dev/types";
 import { addDev } from "../store/dev/actions";
 
+import ThemeChanger from "../components/ThemeChanger";
 import Dev from "../components/Dev";
 
 import api from "../utils/api";
 
 export default function Landing() {
   const dispatch = useDispatch();
-  let { devs } = useSelector((state: Store) => state.devReducer);
+  const { devs } = useSelector((state: Store) => state.devReducer);
+  const { theme } = useSelector((state: Store) => state.themeReducer);
   const [devName, setDevName] = useState("");
 
   const getDevFromApi = (name: string) => {
@@ -41,11 +49,12 @@ export default function Landing() {
   };
 
   return (
-    <LandingContainer>
-      <Header>
+    <LandingContainer theme={theme}>
+      <Header theme={theme}>
         <h2>Pesquise o nome do dev que deseja</h2>
-        <Form onSubmit={onSubmitForm}>
+        <Form onSubmit={onSubmitForm} theme={theme}>
           <DevInput
+            theme={theme}
             type="text"
             name="dev"
             value={devName}
@@ -53,13 +62,13 @@ export default function Landing() {
           />
 
           <button type="submit">
-            <FaSearch size={16}/>
+            <FaSearch size={16} />
           </button>
         </Form>
       </Header>
 
-      <Main>
-        { devs.length ? (
+      <Main theme={theme}>
+        {devs.length ? (
           devs.map((dev) => {
             return (
               <Dev
@@ -68,15 +77,17 @@ export default function Landing() {
                 name={dev.name}
                 bio={dev.bio}
                 avatar_url={dev.avatar_url}
-								public_repos={dev.public_repos}
+                public_repos={dev.public_repos}
                 username={dev.login}
               />
             );
           })
         ) : (
-          <h1 >Nenhum dev encontrado!</h1>
+          <h1>Nenhum dev encontrado!</h1>
         )}
       </Main>
+
+      <ThemeChanger />
     </LandingContainer>
   );
 }

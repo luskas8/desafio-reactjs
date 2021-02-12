@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import { useSelector } from 'react-redux';
+import { Store } from '../store/dev/types';
 
 import Repository from "./Repository";
 import Loading from "./Loading";
@@ -7,7 +8,9 @@ import Loading from "./Loading";
 import styled from "styled-components";
 
 import api from "../utils/api";
-import { colors } from "../styles/colors";
+import { green } from "../styles/colors";
+
+
 
 interface iDevProps {
   username: string;
@@ -20,6 +23,7 @@ interface iReposInfo {
 }
 
 export default function DevRepos({ username: devUsername }: iDevProps) {
+  const { theme } = useSelector((state: Store) => state.themeReducer);
   const [repos, setRepos] = useState<Array<iReposInfo>>([]);
 
   useEffect(() => {
@@ -42,7 +46,7 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
     console.log(repos)
   }, [devUsername]);
   
-  if (!repos.length) return <Loading spinnerType="TailSpin" time={10000} text="Só mais um pouco... desculpe a demora :)" color={colors.dark.green}/>
+  if (!repos.length) return <Loading spinnerType="TailSpin" time={10000} text="Só mais um pouco... desculpe a demora :)" color={theme === "DARK" ? green.dark : green.light}/>
 
   const PageRepositories = styled.div`
     width: 100%;
@@ -55,7 +59,7 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
   `
 
   return (
-    <PageRepositories>
+    <PageRepositories theme={theme}>
       {repos.map((item, idx) => {
         return (
           <Repository

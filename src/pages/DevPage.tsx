@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { Store } from "../store/dev/types";
+import { useSelector } from "react-redux";
 
 import DevRepos from "../components/DevRepos";
 import Loading from '../components/Loading';
@@ -8,6 +10,7 @@ import Loading from '../components/Loading';
 import api from "../utils/api";
 
 import { Aside, DevContainer, ImageBlock, Info, Footer } from "../styles/devPage";
+import { green } from "../styles/colors";
 
 interface iDevParams {
   username: string;
@@ -22,6 +25,7 @@ interface iDevInfo {
 }
 
 export default function DevPage() {
+  const { theme } = useSelector((state: Store) => state.themeReducer);
   const params = useParams<iDevParams>();
   const [devInfo, setDevInfo] = useState<iDevInfo>();
 
@@ -38,18 +42,18 @@ export default function DevPage() {
       });
   }, [params.username]);
 
-  if (!devInfo) return <Loading />;
+  if (!devInfo) return <Loading time={0} color={theme === 'DARK' ? green.dark : green.light}/>;
 
   return (
-    <DevContainer>
-      <Aside>
+    <DevContainer theme={theme}>
+      <Aside theme={theme}>
         <header>
-          <ImageBlock>
+          <ImageBlock theme={theme}>
             <img src={devInfo.avatar_url} alt={`Avatar de ${devInfo.name}`} />
           </ImageBlock>
         </header>
         <main>
-          <Info>
+          <Info theme={theme}>
             <h1>{devInfo.name}</h1>
             <h2>{devInfo.username}</h2>
             <p>{devInfo.bio}</p>
@@ -59,7 +63,7 @@ export default function DevPage() {
           {
             devInfo.location && (
               <h3>
-                <HiOutlineLocationMarker size={18} color="#fff" />{" "}
+                <HiOutlineLocationMarker size={18} color="#fff"/>
                 {devInfo.location}
               </h3>
             )
@@ -67,7 +71,7 @@ export default function DevPage() {
         </Footer>
       </Aside>
 
-      <DevRepos username={devInfo.username} />
+      <DevRepos username={devInfo.username}/>
     </DevContainer>
   );
 }

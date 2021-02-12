@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { colors } from './colors';
 
-export const DevItem = styled.div`
+import { lineInColor, menu, shadow, font, titleBlue, del, blue, bg } from './colors';
+
+interface ThemeProp {
+  theme: string;
+}
+
+export const DevItem = styled.div<ThemeProp>`
   width: 80%;
 
   padding: 25px 0;
-  border: 0.1px solid ${colors.dark['line-in-color']};
+  border: 0.1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light}};
 
-  background: ${colors.dark.menu};
+  background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
 
-  -webkit-box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
-  -moz-box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
-  box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
+  -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+  -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+  box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
 
   display: flex;
   justify-content: center;
@@ -37,8 +42,8 @@ export const DevItem = styled.div`
   }
 `;
   
-export const StyledLink = styled(Link)`
-  color: ${colors.dark.font};
+export const StyledLink = styled(Link)<ThemeProp>`
+  color: ${(props) => props.theme === "DARK" ? font.dark : font.light};
 
   display: flex;
   justify-content: space-around;
@@ -48,43 +53,43 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const ImageBlock = styled.div`
+export const ImageBlock = styled.div<ThemeProp>`
   width: 120px;
   height: 120px;
 
   & > img {
-    -webkit-box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
-    -moz-box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
-    box-shadow: 0px 0px 16px -5px ${colors.dark.shadow};
+    -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+    -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+    box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
 
     width: 100%;
 
-    border: 2px solid ${colors.dark['line-in-color']};
+    border: 2px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
     border-radius: 50%;
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<ThemeProp>`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   & > h1 {
     font: 700 1.4rem 'Roboto', 'sans-serif';
-    color: ${colors.dark['title-blue']};
+    color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
   }
 `;
 
-export const TitleSpan = styled.span`
+export const TitleSpan = styled.span<ThemeProp>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 5px;
 
-  color: ${colors.dark['title-blue']};
-  background: ${colors.dark.menu};
+  color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
+  background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
 
-  border: 1px solid ${colors.dark['line-in-color']};
+  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
   border-radius: 15px;
 
   padding: 8px 10px;
@@ -112,7 +117,7 @@ export const ButtonBlock = styled.div`
   align-items: center;
 `;
 
-export const DeleteButton = styled.button`
+export const DeleteButton = styled.button<ThemeProp>`
   width: 100%;
   height: 100%;
 
@@ -120,23 +125,19 @@ export const DeleteButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  color: ${colors.dark.font};
-  background: ${colors.dark.bg};
-  border: 1px solid ${colors.dark['line-in-color']};
+  color: ${(props) => props.theme === "DARK" ? font.dark : font.light};
+  background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
+  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : titleBlue.light};
   border-radius: 12px;
   cursor: pointer;
 
   &:hover {
-    border: 2px solid ${colors.dark.blue};
-  }
-  
-  &:hover, ${DevItem} {
-    border: 2px solid ${colors.dark.blue};
+    border: 2px solid ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
   }
 
   &:active {
-    border-color: ${colors.dark.delete};
-    color: ${colors.dark.delete};
-    background: ${colors.dark.menu};
+    border-color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
+    color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
+    background: ${(props) => props.theme === "DARK" ? menu.dark : menu.light};
   }
 `;
