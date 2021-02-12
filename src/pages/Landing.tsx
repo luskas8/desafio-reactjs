@@ -11,7 +11,6 @@ import {
 import { Store } from "../store/dev/types";
 import { addDev } from "../store/dev/actions";
 
-import ThemeChanger from "../components/ThemeChanger";
 import Dev from "../components/Dev";
 
 import api from "../utils/api";
@@ -87,7 +86,7 @@ export default function Landing() {
         )}
       </Main>
 
-      <ThemeChanger />
+      
     </LandingContainer>
   );
 }

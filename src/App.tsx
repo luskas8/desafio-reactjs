@@ -9,6 +9,7 @@ import { AppContainer } from "./styles/global";
 import "./styles/global.css";
 
 import { font } from "./styles/colors";
+import ThemeChanger from "./components/ThemeChanger";
 
 function App() {
   const { theme } = useSelector((state: Store) => state.themeReducer);
@@ -26,7 +27,10 @@ function App() {
           text="Estamos ajeitando tudo para você..."
         />
       ) : (
-        <Routes />
+        <>
+          <Routes />
+          <ThemeChanger />
+        </>
       )}
     </AppContainer>
   );

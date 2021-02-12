@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { darkTheme, lightTheme } from "../store/dev/actions";
 import { Store } from "../store/dev/types";
 
-import { font, menu, titleBlue } from "../styles/colors";
+import { font, lineInColor, menu, titleBlue } from "../styles/colors";
 
 export default function ThemeChanger() {
   const { theme } = useSelector((state: Store) => state.themeReducer);
@@ -15,21 +15,35 @@ export default function ThemeChanger() {
     width: 150px;
     height: 80px;
 
-    position: absolute;
+    position: fixed;
+    top: 50px;
+    right: 0;
+
 
     & > button {
+      border: 2px solid ${theme === "DARK" ? lineInColor.dark : lineInColor.light};
+      border-right: 0px;
+
+      margin-left: 60%;
+
       width: 100%;
       height: 100%;
 
       color: ${theme === "DARK" ? font.dark : titleBlue.light};
       background: ${theme === "DARK" ? menu.dark : font.dark};
 
-      border-radius: 25px;
+      border-radius: 25px 0 0 25px;
 
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 5px;
+      gap: 25px;
+
+      transition: margin ease-in-out .25s;
+
+      &:hover {
+        margin-left: 0;
+      }
     }
   `;
 
@@ -39,8 +53,6 @@ export default function ThemeChanger() {
     } else {
       dispatch(darkTheme());
     }
-
-    alert(theme);
   };
 
   return (

@@ -7,6 +7,7 @@ interface ThemeProp {
 }
 
 export const AppContainer = styled.div<ThemeProp>`
+position: relative;
     background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
 
     color: ${(props) => props.theme === "DARK" ? font.dark : font.light};
