@@ -5,11 +5,18 @@ import { Store } from "../store/dev/types";
 import { useDispatch, useSelector } from "react-redux";
 
 import DevRepos from "../components/DevRepos";
-import Loading from '../components/Loading';
+import Loading from "../components/Loading";
 
 import api from "../utils/api";
 
-import { Aside, DevContainer, ImageBlock, Info, Footer } from "../styles/devPage";
+import {
+  Aside,
+  DevContainer,
+  ImageBlock,
+  Info,
+  Footer,
+  ToggleMenu,
+} from "../styles/devPage";
 import { green } from "../styles/colors";
 import { darkTheme, lightTheme } from "../store/dev/actions";
 
@@ -27,6 +34,7 @@ interface iDevInfo {
 }
 
 export default function DevPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme } = useSelector((state: Store) => state.themeReducer);
   const dispatch = useDispatch();
   const params = useParams<iDevParams>();
@@ -51,11 +59,19 @@ export default function DevPage() {
       });
   }, [params.username, params.theme, dispatch]);
 
-  if (!devInfo) return <Loading time={0} color={theme === 'DARK' ? green.dark : green.light}/>;
+  if (!devInfo)
+    return (
+      <Loading time={0} color={theme === "DARK" ? green.dark : green.light} />
+    );
 
   return (
     <DevContainer theme={theme}>
-      <Aside theme={theme}>
+      <Aside theme={theme} isOpen={isMenuOpen}>
+        <ToggleMenu theme={theme} isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <div className="line line1"></div>
+          <div className="line line2"></div>
+          <div className="line line3"></div>
+        </ToggleMenu>
         <header>
           <ImageBlock theme={theme}>
             <img src={devInfo.avatar_url} alt={`Avatar de ${devInfo.name}`} />
@@ -69,18 +85,16 @@ export default function DevPage() {
           </Info>
         </main>
         <Footer>
-          {
-            devInfo.location && (
-              <h3>
-                <HiOutlineLocationMarker size={18} color="#fff"/>
-                {devInfo.location}
-              </h3>
-            )
-          }
+          {devInfo.location && (
+            <h3>
+              <HiOutlineLocationMarker size={18} color="#fff" />
+              {devInfo.location}
+            </h3>
+          )}
         </Footer>
       </Aside>
 
-      <DevRepos username={devInfo.username}/>
+      <DevRepos username={devInfo.username} />
     </DevContainer>
   );
 }

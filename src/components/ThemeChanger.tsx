@@ -24,7 +24,7 @@ export default function ThemeChanger() {
     height: 80px;
 
     position: fixed;
-    top: 50px;
+    top: 20px;
     right: 0;
 
     & > .changer-button {

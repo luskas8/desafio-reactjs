@@ -1,7 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { lineInColor, menu, shadow, font, titleBlue, del, blue, bg } from './colors';
+import {
+  lineInColor,
+  menu,
+  shadow,
+  font,
+  titleBlue,
+  del,
+  blue,
+  bg,
+} from "./colors";
 
 interface ThemeProp {
   theme: string;
@@ -11,13 +20,17 @@ export const DevItem = styled.div<ThemeProp>`
   width: 1500px;
 
   padding: 25px 0;
-  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : menu.dark}};
+  border: 1px solid ${(props) =>
+    props.theme === "DARK" ? lineInColor.dark : menu.dark}};
 
-  background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
+  background: ${(props) => (props.theme === "DARK" ? menu.dark : bg.light)};
 
-  -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
-  -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
-  box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+  -webkit-box-shadow: 0px 0px 16px -5px ${(props) =>
+    props.theme === "DARK" ? shadow.dark : shadow.light};
+  -moz-box-shadow: 0px 0px 16px -5px ${(props) =>
+    props.theme === "DARK" ? shadow.dark : shadow.light};
+  box-shadow: 0px 0px 16px -5px ${(props) =>
+    props.theme === "DARK" ? shadow.dark : shadow.light};
   
   padding: 20px 12px;
 
@@ -44,9 +57,9 @@ export const DevItem = styled.div<ThemeProp>`
     width: 80%;
   }
 `;
-  
+
 export const StyledLink = styled(Link)<ThemeProp>`
-  color: ${(props) => props.theme === "DARK" ? font.dark : menu.light};
+  color: ${(props) => (props.theme === "DARK" ? font.dark : menu.light)};
 
   display: flex;
   justify-content: space-around;
@@ -71,17 +84,18 @@ export const ImageBlock = styled.div<ThemeProp>`
   align-items: center;
 
   @media only screen and (max-width: 420.99px) {
-    grid-area: avatar
+    grid-area: avatar;
   }
 
   & > img {
-    -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
-    -moz-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
-    box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
+    -webkit-box-shadow: 0px 0px 16px -5px ${(props) => (props.theme === "DARK" ? shadow.dark : shadow.light)};
+    -moz-box-shadow: 0px 0px 16px -5px ${(props) => (props.theme === "DARK" ? shadow.dark : shadow.light)};
+    box-shadow: 0px 0px 16px -5px ${(props) => (props.theme === "DARK" ? shadow.dark : shadow.light)};
 
     width: 100%;
 
-    border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : menu.light};
+    border: 1px solid
+      ${(props) => (props.theme === "DARK" ? lineInColor.dark : menu.light)};
     border-radius: 50%;
   }
 `;
@@ -92,8 +106,9 @@ export const Title = styled.div<ThemeProp>`
   align-items: center;
 
   & > h1 {
-    font: 700 1.4rem 'Roboto', 'sans-serif';
-    color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
+    font: 700 1.4rem "Roboto", "sans-serif";
+    color: ${(props) =>
+      props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
   }
 `;
 
@@ -103,10 +118,12 @@ export const TitleSpan = styled.span<ThemeProp>`
   align-items: center;
   gap: 5px;
 
-  color: ${(props) => props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
-  background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
+  color: ${(props) =>
+    props.theme === "DARK" ? titleBlue.dark : titleBlue.light};
+  background: ${(props) => (props.theme === "DARK" ? menu.dark : bg.light)};
 
-  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : bg.dark};
+  border: 1px solid
+    ${(props) => (props.theme === "DARK" ? lineInColor.dark : bg.dark)};
   border-radius: 15px;
 
   padding: 8px 10px;
@@ -120,7 +137,7 @@ export const Infos = styled.div`
   padding-left: 15px;
 
   @media only screen and (max-width: 420.99px) {
-    grid-area: info
+    grid-area: info;
   }
 
   @media only screen and (max-width: 800.99px) {
@@ -129,7 +146,7 @@ export const Infos = styled.div`
 
   & > p {
     margin-top: 12px;
-    font: 300 1rem 'Roboto', 'sans-serif';
+    font: 300 1rem "Roboto", "sans-serif";
   }
 `;
 
@@ -150,20 +167,23 @@ export const DeleteButton = styled.button<ThemeProp>`
   justify-content: center;
   align-items: center;
 
-  color: ${(props) => props.theme === "DARK" ? font.dark : menu.light};
-  background: ${(props) => props.theme === "DARK" ? bg.dark : bg.light};
-  border: 1px solid ${(props) => props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
+  color: ${(props) => (props.theme === "DARK" ? font.dark : menu.light)};
+  background: ${(props) => (props.theme === "DARK" ? bg.dark : bg.light)};
+  border: 1px solid
+    ${(props) =>
+      props.theme === "DARK" ? lineInColor.dark : lineInColor.light};
   border-radius: 12px;
   cursor: pointer;
 
   &:hover {
-    border: 2px solid ${(props) => props.theme === "DARK" ? blue.dark : blue.light};
+    border: 2px solid
+      ${(props) => (props.theme === "DARK" ? blue.dark : blue.light)};
   }
 
   &:active {
-    border-color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
-    color: ${(props) => props.theme === "DARK" ? del.dark : del.light};
-    background: ${(props) => props.theme === "DARK" ? menu.dark : bg.light};
+    border-color: ${(props) => (props.theme === "DARK" ? del.dark : del.light)};
+    color: ${(props) => (props.theme === "DARK" ? del.dark : del.light)};
+    background: ${(props) => (props.theme === "DARK" ? menu.dark : bg.light)};
   }
 `;
 

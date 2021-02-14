@@ -56,7 +56,11 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
     padding: 50px 0 25px 380px;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    @media only screen and (max-width: 970.99px) {
+      padding: 50px 0 25px 80px;
+    }
   `
 
   return (
