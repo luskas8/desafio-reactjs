@@ -21,6 +21,10 @@ export default function Loading({ spinnerType = "Puff", time, text = "Isso pode 
     justify-content: center;
     align-items: center;
     gap: 25px;
+
+    & > h1 {
+      text-align: center;
+    }
 `;
 
   return (

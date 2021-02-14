@@ -35,6 +35,14 @@ export const DevItem = styled.div<ThemeProp>`
   &:not(:first-child) {
     margin-top: 30px;
   }
+
+  @media only screen and (max-width: 1515.99px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 800.99px) {
+    width: 80%;
+  }
 `;
   
 export const StyledLink = styled(Link)<ThemeProp>`
@@ -46,11 +54,25 @@ export const StyledLink = styled(Link)<ThemeProp>`
   gap: 50px;
 
   text-decoration: none;
+  
+  @media only screen and (max-width: 770.99px) {
+    display: grid;
+    grid-template-areas "avatar"
+                        "info";             
+  }
 `;
 
 export const ImageBlock = styled.div<ThemeProp>`
   width: 120px;
   height: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 420.99px) {
+    grid-area: avatar
+  }
 
   & > img {
     -webkit-box-shadow: 0px 0px 16px -5px ${(props) => props.theme === "DARK" ? shadow.dark : shadow.light};
@@ -94,8 +116,16 @@ export const TitleSpan = styled.span<ThemeProp>`
 `;
 
 export const Infos = styled.div`
-  min-width: 1000px;
+  max-width: 1000px;
   padding-left: 15px;
+
+  @media only screen and (max-width: 420.99px) {
+    grid-area: info
+  }
+
+  @media only screen and (max-width: 800.99px) {
+    max-width: 320px;
+  }
 
   & > p {
     margin-top: 12px;

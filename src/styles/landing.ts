@@ -28,6 +28,10 @@ export const Header = styled.header<ThemeProp>`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & > h2 {
+    text-align: center;
+  }
 `;
 
 export const Form = styled.form<ThemeProp>`
@@ -96,5 +100,9 @@ export const Main = styled.main<ThemeProp>`
   & > .noDev {
     color: ${(props) => (props.theme !== "DARK" && '#000')} !important;
     z-index: 99;
+  }
+
+  & > h1 {
+    text-align: center;
   }
 `;

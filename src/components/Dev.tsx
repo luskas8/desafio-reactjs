@@ -57,7 +57,7 @@ export default function Dev(props: iDevProps) {
             <p>{props.bio}</p>
           </Infos>
         </StyledLink>
-        <ButtonBlock theme={theme}>
+        <ButtonBlock className="delete-button" theme={theme}>
           <DeleteButton
             onClick={() => {
               deleteDevFromArray(props.id);
