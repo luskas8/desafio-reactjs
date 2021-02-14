@@ -48,7 +48,7 @@ export const ToggleMenu = styled.div<AsideProps>`
   right: 20px;
   width: 50px;
   height: 40px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   padding: 2px 2px 2px 3px;
@@ -75,6 +75,10 @@ export const ToggleMenu = styled.div<AsideProps>`
     -moz-transition: transform 0.2s ease-out;
     -ms-transition: transform 0.2s ease-out;
     -o-transition: transform 0.2s ease-out;
+  }
+
+  @media only screen and (max-width: 970.99px) {
+    display: flex;
   }
 
   ${(props) =>

@@ -34,7 +34,7 @@ export default function ThemeChanger() {
       width: 100%;
       height: 100%;
 
-      margin-left: 80%;
+      margin-left: 75%;
 
       background: ${theme === "DARK" ? purpleScale2.dark : lineInColor.dark};
 

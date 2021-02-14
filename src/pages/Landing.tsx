@@ -58,6 +58,7 @@ export default function Landing() {
             name="dev"
             value={devName}
             onChange={(evt) => setDevName(evt.target.value)}
+            placeholder="Exemplo: luskas8"
           />
 
           <button type="submit">
