@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -13,34 +13,28 @@ import {
   shadow,
 } from "../styles/colors";
 
-// interface 
+// interface
 
 export default function ThemeChanger() {
-  const marginDefaultValue = 70;
   const { theme } = useSelector((state: Store) => state.themeReducer);
   const dispatch = useDispatch();
-  const [hoverMargin, setHoverMargin] = useState(marginDefaultValue);
 
   const ThemeChenagerContainer = styled.div`
-    width: 80px;
+    width: 100px;
     height: 80px;
 
     position: fixed;
     top: 50px;
     right: 0;
 
-    & > button {
-      cursor: pointer;
-
+    & > .changer-button {
       border: 3px solid ${theme === "DARK" ? purpleScale1.dark : shadow.light};
       border-right: 0px;
-
-      margin-left: ${hoverMargin}%;
 
       width: 100%;
       height: 100%;
 
-      color: ${yellow.dark};
+      margin-left: 80%;
 
       background: ${theme === "DARK" ? purpleScale2.dark : lineInColor.dark};
 
@@ -51,6 +45,27 @@ export default function ThemeChanger() {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    & > .changer-button > button {
+      cursor: pointer;
+
+      width: 20px:
+      heigth: 20px;
+      padding: 12px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: ${yellow.dark};
+      background: ${theme !== "DARK" ? purpleScale1.dark : lineInColor.dark};
+      border: none;
+      border-radius: 100%;
+    }
+
+    &:hover > .changer-button {
+      margin-left: 0;
     }
   `;
 
@@ -63,10 +78,12 @@ export default function ThemeChanger() {
   };
 
   return (
-    <ThemeChenagerContainer onMouseOver={() => {setHoverMargin(0)}} onMouseLeave={() => setHoverMargin(marginDefaultValue)}>
-      <button onClick={onChangerClick}>
-        <WiMoonAltThirdQuarter size={25} />
-      </button>
+    <ThemeChenagerContainer>
+      <div className="changer-button">
+        <button onClick={onChangerClick}>
+          <WiMoonAltThirdQuarter size={25} />
+        </button>
+      </div>
     </ThemeChenagerContainer>
   );
 }

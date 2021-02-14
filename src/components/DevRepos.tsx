@@ -44,6 +44,7 @@ export default function DevRepos({ username: devUsername }: iDevProps) {
         console.error(err);
       });
     console.log(repos)
+    // eslint-disable-next-line
   }, [devUsername]);
   
   if (!repos.length) return <Loading spinnerType="TailSpin" time={10000} text="Só mais um pouco... desculpe a demora :)" color={theme === "DARK" ? green.dark : green.light}/>
